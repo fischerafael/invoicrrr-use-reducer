@@ -1,8 +1,8 @@
 import { IClient } from "../../entities";
 
-export const getLocalStorage = (key: string): IClient[] => {
+export const getLocalStorage = <T>(key: string): T | undefined => {
   const clientsString = localStorage.getItem(key);
-  if (!clientsString) return [];
-  const clientsArray: IClient[] = JSON.parse(clientsString);
+  if (!clientsString) return;
+  const clientsArray: T = JSON.parse(clientsString);
   return clientsArray;
 };

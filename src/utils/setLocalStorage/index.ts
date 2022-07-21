@@ -1,5 +1,5 @@
 import { IClient } from "../../entities";
 
-export const setLocalStorage = (key: string, clientsArray: IClient[]) => {
-  localStorage.setItem(key, JSON.stringify(clientsArray));
+export const setLocalStorage = <T>(key: string, payload: T) => {
+  localStorage.setItem(key, JSON.stringify(payload));
 };

@@ -54,7 +54,7 @@ const ClientProvider = ({ children }: { children: ReactNode }) => {
     const id = new Date().getTime().toString();
     const newClientsArray = [...clients, { ...client, id }];
     setClients(newClientsArray);
-    setLocalStorage("@invoicrrr-clients", newClientsArray);
+    setLocalStorage<IClient[]>("@invoicrrr-clients", newClientsArray);
     handleResetClient();
     handleNavigateTo("/dashboard/clients");
   };
