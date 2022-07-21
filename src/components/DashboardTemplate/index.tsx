@@ -29,7 +29,14 @@ export const DashboardTemplate = ({
         {sidebar}
       </VStack>
 
-      <VStack w="full" maxW="gray.100" align="flex-start" p="8">
+      <VStack
+        w="full"
+        maxW="gray.100"
+        align="flex-start"
+        p="8"
+        h="100vh"
+        overflowY="auto"
+      >
         {main}
       </VStack>
     </HStack>
