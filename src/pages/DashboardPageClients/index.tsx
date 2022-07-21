@@ -36,5 +36,3 @@ export const DashboardPageClients = () => {
     />
   );
 };
-
-("Head Office 18th and 19th Floors, 100 Bishopsgate, London EC2M 1GT, UK");
