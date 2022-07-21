@@ -34,6 +34,16 @@ export const DashboardPageBankingDetails = () => {
     MY_DETAILS_INITIAL_STATE
   );
 
+  const [hasIntermediate, setHasIntermediate] = useState(true);
+
+  const handleHasIntermediateChange = (e: any) => {
+    if (hasIntermediate) {
+      setHasIntermediate(false);
+      return;
+    }
+    setHasIntermediate(true);
+  };
+
   return (
     <DashboardTemplate
       sidebar={<SideBar />}
@@ -109,65 +119,78 @@ export const DashboardPageBankingDetails = () => {
           </HStack>
 
           <HStack w="full" justify="space-between">
-            <Text alignSelf="start" color={theme.title}>
+            <Text
+              alignSelf="start"
+              color={hasIntermediate ? theme.title : "gray.600"}
+            >
               2. Intermediate Bank
             </Text>
 
-            <Checkbox colorScheme="yellow">Has Intermediate Bank</Checkbox>
+            <Checkbox
+              colorScheme="yellow"
+              isChecked={hasIntermediate}
+              onChange={handleHasIntermediateChange}
+            >
+              Has Intermediate Bank
+            </Checkbox>
           </HStack>
 
-          <Input
-            placeholder="Intermediate Bank Account Owner"
-            value={myDetails.name}
-            onChange={(e) =>
-              setMyDetails({ ...myDetails, name: e.target.value })
-            }
-          />
+          {hasIntermediate && (
+            <>
+              <Input
+                placeholder="Intermediate Bank Account Owner"
+                value={myDetails.name}
+                onChange={(e) =>
+                  setMyDetails({ ...myDetails, name: e.target.value })
+                }
+              />
 
-          <Input
-            placeholder="Intermediate Bank Account Number"
-            value={myDetails.name}
-            onChange={(e) =>
-              setMyDetails({ ...myDetails, name: e.target.value })
-            }
-          />
+              <Input
+                placeholder="Intermediate Bank Account Number"
+                value={myDetails.name}
+                onChange={(e) =>
+                  setMyDetails({ ...myDetails, name: e.target.value })
+                }
+              />
 
-          <HStack w="full" spacing="8">
-            <Input
-              placeholder="Intermediate Bank Name"
-              value={myDetails.name}
-              onChange={(e) =>
-                setMyDetails({ ...myDetails, name: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Intermediate Bank SWIFT"
-              value={myDetails.name}
-              onChange={(e) =>
-                setMyDetails({ ...myDetails, name: e.target.value })
-              }
-            />
-          </HStack>
+              <HStack w="full" spacing="8">
+                <Input
+                  placeholder="Intermediate Bank Name"
+                  value={myDetails.name}
+                  onChange={(e) =>
+                    setMyDetails({ ...myDetails, name: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Intermediate Bank SWIFT"
+                  value={myDetails.name}
+                  onChange={(e) =>
+                    setMyDetails({ ...myDetails, name: e.target.value })
+                  }
+                />
+              </HStack>
 
-          <HStack w="full" spacing="8">
-            <Input
-              placeholder="Intermediate Bank City"
-              value={myDetails.name}
-              onChange={(e) =>
-                setMyDetails({ ...myDetails, name: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Intermediate Bank Country"
-              value={myDetails.name}
-              onChange={(e) =>
-                setMyDetails({ ...myDetails, name: e.target.value })
-              }
-            />
-          </HStack>
+              <HStack w="full" spacing="8">
+                <Input
+                  placeholder="Intermediate Bank City"
+                  value={myDetails.name}
+                  onChange={(e) =>
+                    setMyDetails({ ...myDetails, name: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Intermediate Bank Country"
+                  value={myDetails.name}
+                  onChange={(e) =>
+                    setMyDetails({ ...myDetails, name: e.target.value })
+                  }
+                />
+              </HStack>
+            </>
+          )}
 
           <HStack w="full" spacing="8" justify="space-between">
-            <Button alignSelf="flex-end" variant="ghost" colorScheme="yellow">
+            <Button alignSelf="flex-end" variant="outline" colorScheme="yellow">
               Reset Banking Details
             </Button>
 
