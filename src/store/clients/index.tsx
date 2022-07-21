@@ -34,8 +34,8 @@ const ClientProvider = ({ children }: { children: ReactNode }) => {
   const [client, setClient] = useState<IClient>(INITIAL_CLIENT_STATE);
 
   useEffect(() => {
-    const clients = getLocalStorage("@invoicrrr-clients");
-    setClients(clients);
+    const clients = getLocalStorage<IClient[]>("@invoicrrr-clients");
+    setClients(clients!);
   }, []);
 
   const handleResetClient = () => {
