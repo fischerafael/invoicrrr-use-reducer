@@ -3,6 +3,7 @@ export interface IClient {
   address: string;
   city: string;
   country: string;
+  id?: string;
 }
 
 export interface IClientInitialState {

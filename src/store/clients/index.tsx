@@ -1,51 +1,62 @@
 import {
   createContext,
+  Dispatch,
   ReactNode,
+  SetStateAction,
   useContext,
-  useEffect,
-  useReducer,
+  useState,
 } from "react";
-import { IClient, IClientInitialState } from "../../entities";
+import { IClient } from "../../entities";
+import { handleNavigateTo } from "../../utils/handleNavigateTo";
 
 interface ClientContextProps {
-  handleAddClient: (client: IClient) => void;
+  clients: IClient[];
+  handleAddClient: () => void;
+  handleDeleteClient: (id: string) => void;
+  client: IClient;
+  setClient: Dispatch<SetStateAction<IClient>>;
 }
 
 const ClientContext = createContext({} as ClientContextProps);
 
-const initialClientsState: IClientInitialState = { clients: [] };
-
-export const clientsReducer = (
-  state: IClientInitialState,
-  action: { type: "GET_CLIENTS" | "ADD_CLIENT"; payload?: any }
-) => {
-  switch (action.type) {
-    case "GET_CLIENTS":
-      return state;
-    case "ADD_CLIENT":
-      return {
-        clients: [...state.clients, action.payload],
-      };
-    default:
-      return state;
-  }
+const INITIAL_CLIENT_STATE: IClient = {
+  address: "",
+  city: "",
+  country: "",
+  name: "",
 };
 
 const ClientProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(clientsReducer, initialClientsState);
+  const [clients, setClients] = useState<IClient[]>([]);
+  const [client, setClient] = useState<IClient>(INITIAL_CLIENT_STATE);
 
-  useEffect(() => {
-    dispatch({ type: "GET_CLIENTS" });
-  }, [dispatch]);
-
-  const handleAddClient = (client: IClient) => {
-    dispatch({ type: "ADD_CLIENT" });
+  const handleResetClient = () => {
+    setClient(INITIAL_CLIENT_STATE);
   };
 
-  console.log(state);
+  const handleAddClient = () => {
+    if (!client) return;
+    const id = new Date().getTime().toString();
+    setClients((prev) => [...prev, { ...client, id }]);
+    handleResetClient();
+    handleNavigateTo("/dashboard/clients");
+  };
+
+  const handleDeleteClient = (id: string) => {
+    const newClientsArray = clients.filter((client) => client.id !== id);
+    setClients(newClientsArray);
+  };
 
   return (
-    <ClientContext.Provider value={{ handleAddClient }}>
+    <ClientContext.Provider
+      value={{
+        clients,
+        handleAddClient,
+        client,
+        setClient,
+        handleDeleteClient,
+      }}
+    >
       {children}
     </ClientContext.Provider>
   );

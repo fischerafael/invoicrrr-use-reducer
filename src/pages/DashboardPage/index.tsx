@@ -1,6 +1,6 @@
-import { DashboardTemplate } from "../../src/components/DashboardTemplate";
-import { MainSection } from "../../src/components/MainSection";
-import { SideBar } from "../../src/components/SideBar";
+import { DashboardTemplate } from "../../components/DashboardTemplate";
+import { MainSection } from "../../components/MainSection";
+import { SideBar } from "../../components/SideBar";
 
 export const DashboardPage = () => {
   return <DashboardTemplate sidebar={<SideBar />} main={<MainSection />} />;
