@@ -2,13 +2,12 @@ import { Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { theme } from "../../config/theme";
 import { DashboardTemplate } from "../../src/components/DashboardTemplate";
 import { SideBar } from "../../src/components/SideBar";
+import { useClientContext } from "../../store/clients";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
 import { Card } from "../Card";
 
 export const DashboardPageClients = () => {
-  const handleAddClient = () => {
-    handleNavigateTo("/dashboard/clients/add");
-  };
+  const { handleAddClient } = useClientContext();
 
   return (
     <DashboardTemplate
@@ -17,7 +16,7 @@ export const DashboardPageClients = () => {
         <VStack w="full" spacing="8">
           <HStack w="full" justify="flex-end">
             <Button
-              onClick={handleAddClient}
+              onClick={() => handleAddClient()}
               color="gray.50"
               colorScheme={theme.title}
             >
