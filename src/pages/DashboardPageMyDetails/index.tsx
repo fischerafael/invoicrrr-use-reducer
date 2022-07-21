@@ -7,6 +7,7 @@ import { setLocalStorage } from "../../utils/setLocalStorage";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
 import { getLocalStorage } from "../../utils/getLocalStorage";
 import { removeLocalStorage } from "../../utils/removeLocalStorage";
+import { theme } from "../../config/theme";
 
 interface IMyDetails {
   name: string;
@@ -59,6 +60,9 @@ export const DashboardPageMyDetails = () => {
       sidebar={<SideBar />}
       main={
         <VStack w="full" spacing="8" as="form" onSubmit={handleSaveMyDetails}>
+          <Text alignSelf="start" color={theme.title}>
+            1. Personal Details
+          </Text>
           <Input
             placeholder="Your Name"
             value={myDetails.name}
@@ -73,6 +77,10 @@ export const DashboardPageMyDetails = () => {
               setMyDetails({ ...myDetails, company: e.target.value })
             }
           />
+
+          <Text alignSelf="start" color={theme.title}>
+            2. Address Details
+          </Text>
           <Input
             placeholder="Your Address"
             value={myDetails.address}
@@ -97,7 +105,9 @@ export const DashboardPageMyDetails = () => {
               }
             />
           </HStack>
-
+          <Text alignSelf="start" color={theme.title}>
+            3. Contact Details
+          </Text>
           <HStack w="full" spacing="8">
             <Input
               placeholder="Your City"
