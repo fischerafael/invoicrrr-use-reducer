@@ -17,15 +17,15 @@ export const DashboardPageClients = () => {
           <HStack w="full" justify="flex-end">
             <Button
               onClick={() => handleNavigateTo("/dashboard/clients/add")}
-              color="gray.50"
               colorScheme={theme.title}
             >
-              Adicionar
+              Add
             </Button>
           </HStack>
 
           {clients?.map((client) => (
             <Card
+              key={client.id}
               title={client.name}
               subTitle={`${client.address}, ${client.city}, ${client.country}`}
               onDelete={() => handleDeleteClient(client.id!)}

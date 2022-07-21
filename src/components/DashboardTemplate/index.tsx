@@ -21,7 +21,7 @@ export const DashboardTemplate = ({
       <VStack
         w="full"
         bg="gray.800"
-        maxW="300px"
+        maxW="200px"
         h="100vh"
         align="flex-start"
         p="8"

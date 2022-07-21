@@ -5,13 +5,14 @@ import { SideBar } from "../../components/SideBar";
 import { useClientContext } from "../../store/clients";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
 import { Input } from "../../components/Input";
+import { FormEvent } from "react";
 
 export const DashboardPageClientsAdd = () => {
   const { handleAddClient, client, setClient } = useClientContext();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
     handleAddClient();
-    handleNavigateTo("/dashboard/clients");
   };
 
   return (
@@ -22,14 +23,14 @@ export const DashboardPageClientsAdd = () => {
           <HStack w="full" justify="flex-end">
             <Button
               onClick={() => handleNavigateTo("/dashboard/clients")}
-              color="gray.50"
               colorScheme={theme.title}
+              variant="ghost"
             >
-              Cancelar
+              Cancel
             </Button>
           </HStack>
 
-          <VStack w="full" spacing="8">
+          <VStack w="full" spacing="8" as="form" onSubmit={handleSubmit}>
             <Input
               placeholder="Name"
               value={client?.name}
@@ -71,12 +72,12 @@ export const DashboardPageClientsAdd = () => {
               }}
             />
             <Button
-              onClick={handleSubmit}
+              type="submit"
               color="gray.50"
               colorScheme={theme.title}
               alignSelf="flex-end"
             >
-              Salvar
+              Save
             </Button>
           </VStack>
         </VStack>

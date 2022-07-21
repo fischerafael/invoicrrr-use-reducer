@@ -43,7 +43,14 @@ const ClientProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleAddClient = () => {
-    if (!client) return;
+    if (
+      !client ||
+      !client.address ||
+      !client.city ||
+      !client.country ||
+      !client.name
+    )
+      return;
     const id = new Date().getTime().toString();
     const newClientsArray = [...clients, { ...client, id }];
     setClients(newClientsArray);
