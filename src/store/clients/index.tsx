@@ -38,8 +38,6 @@ const ClientProvider = ({ children }: { children: ReactNode }) => {
     setClients(clients);
   }, []);
 
-  useEffect(() => {}, [clients]);
-
   const handleResetClient = () => {
     setClient(INITIAL_CLIENT_STATE);
   };
