@@ -17,6 +17,7 @@ export const DashboardTemplate = ({
       minH="100vh"
       align="flex-start"
       color="gray.50"
+      spacing="0"
     >
       <VStack
         w="full"
@@ -25,19 +26,22 @@ export const DashboardTemplate = ({
         h="100vh"
         align="flex-start"
         p="8"
+        shadow="xl"
       >
         {sidebar}
       </VStack>
 
       <VStack
+        bgGradient="linear(to-b, gray.900, gray.800)"
         w="full"
-        maxW="gray.100"
-        align="flex-start"
+        align="center"
         p="8"
         h="100vh"
         overflowY="auto"
       >
-        {main}
+        <VStack w="full" maxW="container.sm">
+          {main}
+        </VStack>
       </VStack>
     </HStack>
   );
